@@ -1,0 +1,14 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css",
+    "typescript": "typescript",
+    "typescriptreact": "typescriptreact",
+    "javascriptreact": "javascriptreact"
+  },
+  "tailwindCSS.classAttributes": ["className", "class", "styles", ".*Variants", ".*Styles"],
+  "tailwindCSS.experimental.classRegex": [["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]],
+  "npm.packageManager": "pnpm",
+  "eslint.format.enable": true
+}

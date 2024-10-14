@@ -1,0 +1,15 @@
+{
+    "Header": {
+      "navItems": {
+        "main": "Home",
+        "exams": "Exams",
+        "pricing": "Pricing",
+        "forInstitutions": "For Institutions",
+        "contact": "Contact",
+        "blog": "Blog"
+      },
+      "login": "Login",
+      "signUp": "Sign Up"
+    }
+  }
+  

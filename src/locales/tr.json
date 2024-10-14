@@ -1,0 +1,14 @@
+{
+  "Header": {
+    "navItems": {
+      "main": "Ana Sayfa",
+      "exams": "Exams",
+      "pricing": "Pricing",
+      "forInstitutions": "For Institutions",
+      "contact": "Contact",
+      "blog": "Blog"
+    },
+    "login": "Login",
+    "signUp": "Sign Up"
+  }
+}
