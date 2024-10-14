@@ -6,7 +6,7 @@ const ThermalCamera = () => {
   return (
     <div className='h-full bg-gradient-to-b from-[#353535] to-[#050504] py-12'>
       <div className='container relative mx-auto flex flex-col gap-20 overflow-x-hidden 2xl:h-[740px]'>
-        <div className='relative z-[1] self-start'>
+        <div className='relative z-[1] self-start mx-4'>
           <h2 className='text-5xl font-extrabold uppercase leading-[60px] text-white'>
             <span className='text-white'>SICAK TAKİP</span>
             <br />

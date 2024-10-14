@@ -16,7 +16,7 @@ const SocialMedia = () => {
   return (
     <div className='h-auto bg-gradient-to-t from-[#353535] to-[#050504] py-12'>
       <div className='container mx-auto flex h-full flex-col items-center justify-center gap-6'>
-        <div className='self-start'>
+        <div className='self-start mx-4'>
           <h2 className='text-5xl font-extrabold'>
             <span className='text-white'>Skydagger ile</span>
             <br />
@@ -24,7 +24,7 @@ const SocialMedia = () => {
           </h2>
         </div>
 
-        <div className='flex w-full px-12 py-10 max-md:px-20'>
+        <div className='flex w-full px-12 py-10 '>
           <Carousel
             opts={{
               loop: true,

@@ -7,7 +7,7 @@ const BattarySection = () => {
     <div className='h-[700px] bg-gradient-to-t from-[#070707] to-[#56626C] py-20'>
       <div className='container relative mx-auto flex h-full flex-col items-center gap-20'>
         <div className='relative z-[1] grid w-full grid-cols-3'>
-          <div className='col-span-2 flex flex-col gap-20'>
+          <div className='col-span-2 mx-4 flex flex-col gap-20'>
             <div className='self-start'>
               <h2 className='text-5xl font-extrabold uppercase'>
                 <span className='text-[#08B500]'>Batarya</span>
@@ -16,7 +16,7 @@ const BattarySection = () => {
               </h2>
             </div>
             <div className='w-2/3'>
-              <p className='!w-auto text-2xl font-medium text-white lg:w-1/2'>
+              <p className='!w-auto hidden sm:block text-lg md:text-2xl  font-medium text-white lg:w-1/2'>
                 Drone&apos;un motorları, pilleri ve elektronik bileşenleri, sıcaklık koşullarına bağlı olarak farklı
                 şekilde çalışır. Genellikle -10°C ila 40°C arası çalışma sıcaklığına sahip olan dronlar, bu aralığın
                 dışında performans kaybı, pil ömründe azalma veya elektronik sistemlerde arızalar yaşayabilir.
