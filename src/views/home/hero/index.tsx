@@ -1,11 +1,36 @@
 'use client'
 import CustomImage from '@/components/image'
+import LinePopover from '@/components/linePopover'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-import React, { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const Hero = () => {
   const [openDroneInfo, setOpenDroneInfo] = useState(false)
+  const [openPopovers, setOpenPopovers] = useState({
+    1: false,
+    2: false
+  })
+
+  const [lineHeight, setLineHeight] = useState(22) // Default height
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!triggerRef.current || !contentRef.current) return
+    const triggerRect = triggerRef.current.getBoundingClientRect()
+    const contentRect = contentRef.current.getBoundingClientRect()
+    const distance = Math.abs(triggerRect.top - contentRect.bottom)
+    setLineHeight(distance)
+  }, [openPopovers, triggerRef, contentRef])
+
+  const handlePopoverOpen = (index: number) => {
+    setOpenPopovers({ ...openPopovers, [index]: true })
+  }
+
+  const handlePopoverClose = (index: number) => {
+    setOpenPopovers({ ...openPopovers, [index]: false })
+  }
 
   const handleButtonClick = () => setOpenDroneInfo(prev => !prev)
 
@@ -88,25 +113,44 @@ const Hero = () => {
                 transition={{ duration: 1.5, delay: 0.5 }}
                 className='group relative size-full max-lg:!scale-75'
               >
-                <button
-                  className='position-center absolute z-[2] flex size-8 items-center justify-center rounded-full border-2 border-white transition-transform duration-300 hover:scale-110'
-                  onClick={handleButtonClick}
+                <LinePopover
+                  open={openPopovers[1] || openDroneInfo}
+                  sideOffset={120}
+                  trigger={
+                    <button
+                      ref={triggerRef}
+                      className='position-center absolute z-[2] flex size-8 items-center justify-center rounded-full border-2 border-white transition-transform duration-300 hover:scale-110'
+                      onClick={handleButtonClick}
+                      onMouseEnter={() => handlePopoverOpen(1)}
+                      onMouseLeave={() => handlePopoverClose(1)}
+                    >
+                      <div className='size-3 rotate-45 bg-blue-300' />
+                    </button>
+                  }
                 >
-                  <div className='size-3 rotate-45 bg-blue-300' />
-                </button>
-                <button
-                  className='absolute bottom-16 right-[15%] z-[2] flex size-8 items-center justify-center rounded-full border-2 border-white transition-transform duration-300 hover:scale-110'
-                  onClick={handleButtonClick}
+                  <h3 className='text-xl font-bold'>Battery Capacity 9000 Mah</h3>
+                </LinePopover>
+
+                <LinePopover
+                  open={openPopovers[2] || openDroneInfo}
+                  sideOffset={120}
+                  trigger={
+                    <button
+                      className='absolute bottom-16 right-[15%] z-[2] flex size-8 items-center justify-center rounded-full border-2 border-white transition-transform duration-300 hover:scale-110'
+                      onClick={handleButtonClick}
+                      onMouseEnter={() => handlePopoverOpen(2)}
+                      onMouseLeave={() => handlePopoverClose(2)}
+                    >
+                      <div className='size-3 rotate-45 bg-blue-300' />
+                    </button>
+                  }
                 >
-                  <div className='size-3 rotate-45 bg-blue-300' />
-                </button>
+                  <h3 className='w-fit text-wrap text-xl font-bold'>Operating Temperature : 10C- 45C</h3>
+                </LinePopover>
 
                 <CustomImage
                   src='/hero.png'
-                  className={cn(
-                    'animate-fly-animation group-hover:animate-none',
-                    openDroneInfo && 'animate-none'
-                  )}
+                  className={cn('animate-fly-animation group-hover:animate-none', openDroneInfo && 'animate-none')}
                   alt='Hero'
                   width={900}
                   height='auto'

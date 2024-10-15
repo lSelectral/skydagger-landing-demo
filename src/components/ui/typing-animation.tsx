@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { useAnimation, useInView } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { useInView } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 
 interface TypingAnimationProps {
   text: string

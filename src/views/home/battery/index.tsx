@@ -1,7 +1,5 @@
 import CustomImage from '@/components/image'
 
-import React from 'react'
-
 const BattarySection = () => {
   return (
     <div className='h-[700px] bg-gradient-to-t from-[#070707] to-[#56626C] py-20'>
@@ -16,7 +14,7 @@ const BattarySection = () => {
               </h2>
             </div>
             <div className='w-2/3'>
-              <p className='!w-auto hidden sm:block text-lg md:text-2xl  font-medium text-white lg:w-1/2'>
+              <p className='hidden !w-auto text-lg font-medium text-white sm:block md:text-2xl lg:w-1/2'>
                 Drone&apos;un motorları, pilleri ve elektronik bileşenleri, sıcaklık koşullarına bağlı olarak farklı
                 şekilde çalışır. Genellikle -10°C ila 40°C arası çalışma sıcaklığına sahip olan dronlar, bu aralığın
                 dışında performans kaybı, pil ömründe azalma veya elektronik sistemlerde arızalar yaşayabilir.

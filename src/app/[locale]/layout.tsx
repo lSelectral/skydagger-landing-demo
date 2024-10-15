@@ -1,10 +1,10 @@
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 import { ThemeProvider } from '@/components/theme-provider'
 import { locales } from '@/navigation'
-import Header from '@/components/header'
 import { NextIntlClientProvider } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
 import React from 'react'
-import Footer from '@/components/footer'
 
 import { Poppins } from 'next/font/google'
 
@@ -35,11 +35,11 @@ export default async function LocaleLayout({ children, params: { locale } }: Loc
 
   return (
     <html className={poppins.className} lang={locale}>
-      <body>
+      <body className='flex h-full min-h-screen flex-col'>
         <NextIntlClientProvider messages={messages} locale={locale}>
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+          <ThemeProvider attribute='class' defaultTheme='dark' disableTransitionOnChange>
             <Header />
-            {children}
+            <div className='flex-1'>{children}</div>
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>

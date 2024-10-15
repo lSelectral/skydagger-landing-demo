@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <header className='sticky top-0 z-50 bg-[#2F2F30] drop-shadow-lg'>
-      <nav className='container mx-auto flex items-center justify-between p-4'>
+      <nav className='container mx-auto flex items-center justify-between p-4 py-2'>
         <Link href='/'>
           <CustomImage src='/logo.png' alt='Logo' className='w-96 max-md:w-80' />
         </Link>

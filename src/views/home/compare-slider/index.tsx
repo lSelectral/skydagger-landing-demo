@@ -1,12 +1,11 @@
 import TypingAnimation from '@/components/ui/typing-animation'
-import React from 'react'
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider'
 
 const CompareSlider = () => {
   return (
     <div className='h-[650px] bg-gradient-to-b from-[#070707] to-[#56626C]'>
       <div className='container mx-auto flex h-full flex-col items-center justify-center'>
-        <div className='self-start'>
+        <div className='mx-4 self-start'>
           <h2 className='text-5xl font-extrabold uppercase'>
             <span className='text-white'>Yüksek</span>
             <br />

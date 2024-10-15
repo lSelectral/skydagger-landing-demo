@@ -1,7 +1,6 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
-import React from 'react'
 import { InstagramEmbed, YouTubeEmbed } from 'react-social-media-embed'
 
 const links = [
@@ -16,7 +15,7 @@ const SocialMedia = () => {
   return (
     <div className='h-auto bg-gradient-to-t from-[#353535] to-[#050504] py-12'>
       <div className='container mx-auto flex h-full flex-col items-center justify-center gap-6'>
-        <div className='self-start mx-4'>
+        <div className='mx-4 self-start'>
           <h2 className='text-5xl font-extrabold'>
             <span className='text-white'>Skydagger ile</span>
             <br />
@@ -24,7 +23,7 @@ const SocialMedia = () => {
           </h2>
         </div>
 
-        <div className='flex w-full px-12 py-10 '>
+        <div className='flex w-full px-12 py-10'>
           <Carousel
             opts={{
               loop: true,
