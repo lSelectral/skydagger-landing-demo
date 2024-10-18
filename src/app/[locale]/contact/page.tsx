@@ -1,9 +1,30 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 
-export default function ContactPage() {
+type Props = {
+  params: {
+    locale: LocaleParams
+  }
+}
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({
+    locale,
+    namespace: 'pages.contact.metadata'
+  })
+  const title = t(`title`, { companyName: 'Skydagger' })
+  const description = t(`description`, { companyName: 'Skydagger' })
+
+  return {
+    title: title,
+    description: description
+  }
+}
+
+export default function ContactPage({ params: { locale } }: Props) {
   return (
     <div className='flex min-h-screen flex-col items-center bg-gradient-to-b from-[#0A0A0A] via-[#1A1A1A] to-[#0F0F0F] p-4 pt-20 text-white'>
       <div className='w-full max-w-4xl'>

@@ -2,10 +2,12 @@ import Footer from '@/components/footer'
 import Header from '@/components/header'
 import { ThemeProvider } from '@/components/theme-provider'
 import { locales } from '@/navigation'
+import type { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { unstable_setRequestLocale } from 'next-intl/server'
 import React from 'react'
 
+import { metadataData, viewportData } from '@/consts/metadata'
 import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({
@@ -29,12 +31,15 @@ export async function generateStaticParams() {
   return locales.map(locale => ({ locale }))
 }
 
+export const metadata: Metadata = metadataData
+export const viewport: Viewport = viewportData
+
 export default async function LocaleLayout({ children, params: { locale } }: LocaleLayoutProps) {
   const messages = await getMessages(locale)
   unstable_setRequestLocale(locale)
 
   return (
-    <html className={poppins.className} lang={locale}>
+    <html className={poppins.className} lang={locale} suppressHydrationWarning>
       <body className='flex h-full min-h-screen flex-col'>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider attribute='class' defaultTheme='dark' disableTransitionOnChange>

@@ -1,7 +1,29 @@
+import { appConsts } from '@/consts/appConsts'
 import { Target, Zap } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 
-export default function Hakkimizda() {
+type Props = {
+  params: {
+    locale: LocaleParams
+  }
+}
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({
+    locale,
+    namespace: 'pages.about.metadata'
+  })
+  const title = t(`title`, { companyName: appConsts.COMPANY_NAME })
+  const description = t(`description`, { companyName: appConsts.COMPANY_NAME })
+
+  return {
+    title: title,
+    description: description
+  }
+}
+
+export default function Hakkimizda({ params: { locale } }: Props) {
   return (
     <div className='min-h-screen bg-gradient-to-b from-[#0A0A0A] via-[#1A1A1A] to-[#0F0F0F] text-gray-200'>
       <div className='container mx-auto px-4 py-16'>

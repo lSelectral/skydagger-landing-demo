@@ -1,15 +1,28 @@
 {
-    "Header": {
-      "navItems": {
-        "main": "Home",
-        "exams": "Exams",
-        "pricing": "Pricing",
-        "forInstitutions": "For Institutions",
-        "contact": "Contact",
-        "blog": "Blog"
-      },
-      "login": "Login",
-      "signUp": "Sign Up"
+  "Header": {
+    "navItems": {
+      "main": "Ana Sayfa",
+      "exams": "Exams",
+      "pricing": "Pricing",
+      "forInstitutions": "For Institutions",
+      "contact": "Contact",
+      "blog": "Blog"
+    },
+    "login": "Login",
+    "signUp": "Sign Up"
+  },
+  "pages": {
+    "about": {
+      "metadata": {
+        "title": "About Us - {companyName}",
+        "description": "Learn more about {companyName} and our mission to make education accessible to everyone."
+      }
+    },
+    "contact": {
+      "metadata": {
+        "title": "Contact Us - {companyName}",
+        "description": "Contact {companyName} for any questions or inquiries."
+      }
     }
   }
-  
+}

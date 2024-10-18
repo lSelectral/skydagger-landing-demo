@@ -10,5 +10,19 @@
     },
     "login": "Login",
     "signUp": "Sign Up"
+  },
+  "pages": {
+    "about": {
+      "metadata": {
+        "title": "Hakkımızda - {companyName}",
+        "description": "Learn more about {companyName} and our mission to make education accessible to everyone."
+      }
+    },
+    "contact": {
+      "metadata": {
+        "title": "İletişim - {companyName}",
+        "description": "Tüm sorularınız için {companyName} ile iletişime geçin."
+      }
+    }
   }
 }

@@ -1,162 +1,91 @@
 'use client'
-import CustomImage from '@/components/image'
-import LinePopover from '@/components/linePopover'
-import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { Circle } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import { useState } from 'react'
+import DroneImageSection from './DroneImageSection'
+
+const Sparkles = dynamic(() => import('@/components/sparkles'), { ssr: false })
 
 const Hero = () => {
   const [openDroneInfo, setOpenDroneInfo] = useState(false)
-  const [openPopovers, setOpenPopovers] = useState({
-    1: false,
-    2: false
-  })
-
-  const [lineHeight, setLineHeight] = useState(22) // Default height
-  const triggerRef = useRef<HTMLButtonElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!triggerRef.current || !contentRef.current) return
-    const triggerRect = triggerRef.current.getBoundingClientRect()
-    const contentRect = contentRef.current.getBoundingClientRect()
-    const distance = Math.abs(triggerRect.top - contentRect.bottom)
-    setLineHeight(distance)
-  }, [openPopovers, triggerRef, contentRef])
-
-  const handlePopoverOpen = (index: number) => {
-    setOpenPopovers({ ...openPopovers, [index]: true })
-  }
-
-  const handlePopoverClose = (index: number) => {
-    setOpenPopovers({ ...openPopovers, [index]: false })
-  }
 
   const handleButtonClick = () => setOpenDroneInfo(prev => !prev)
 
   return (
-    <div className='overflow-hidden bg-gradient-to-b from-[#1C1C1D] via-[#353535] to-[#050504] lg:h-[500px] xl:h-[600px] 2xl:h-[650px]'>
+    <div className='min-h-[800px] bg-gradient-to-b from-[#1C1C1D] via-[#353535] to-[#050504] px-8 sm:min-h-[1000px] lg:min-h-[750px]'>
       <div className='container mx-auto pt-28'>
-        <div className='grid lg:grid-cols-5'>
+        <Sparkles
+          density={400}
+          color='#48b6ff'
+          size={1.3}
+          direction='top'
+          className='pointer-events-none absolute inset-x-0 top-0 h-full w-full select-none'
+        />
+
+        <div className='flex max-lg:flex-col'>
           {/* Text Section */}
-          <motion.div
-            className='z-[2] flex flex-col gap-3 text-white max-md:text-center lg:col-span-3'
-            animate={{ opacity: openDroneInfo ? 0 : 1, x: openDroneInfo ? -100 : 0 }}
-            transition={{ duration: 1, ease: 'easeInOut' }}
-          >
-            {/* Header Animation */}
+          <div className='flex basis-4/6 flex-col'>
             <motion.h1
-              className='text-5xl font-extrabold lg:text-7xl 2xl:text-8xl'
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
+              className='font-extrabold text-white max-xl:!text-6xl max-md:text-center max-md:!text-5xl'
+              initial={{ opacity: 0, y: -50, fontSize: '5rem' }}
+              animate={{ opacity: 1, y: 0, fontSize: openDroneInfo ? '2.5rem' : '5rem' }}
               transition={{ duration: 1 }}
             >
               SKYDAGGER 13’’
             </motion.h1>
-            {/* Subheader Animation */}
-            <motion.h2
-              className='text-3xl font-extrabold xl:text-5xl xl:leading-[60px]'
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5 }}
-            >
-              GELECEK <span className='text-stroke stroke-2 text-black'>SEN</span> <br />
-              HAYAL ETTİĞİN GİBİ
-            </motion.h2>
-            {/* Description Animation */}
-            <motion.p
-              className='font-medium'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 2 }}
-            >
-              Skydagger 13” ile her türlü hava koşulunda <br /> askeri operasyonların verimliliğini arttır
-            </motion.p>
-          </motion.div>
-
-          {/* Drone Image Section */}
-          <div className='flex items-center lg:col-span-2'>
             <motion.div
-              className='relative flex size-full items-center justify-center max-lg:!left-0 max-lg:!translate-x-0'
+              className='z-[2] flex basis-4/6 select-none flex-col gap-3 text-white max-md:text-center'
+              // initial={{ opacity: 0, x: '-100%', scaleY: 0 }}
               animate={{
-                left: openDroneInfo ? '-100%' : 0,
-                translateX: openDroneInfo ? '25%' : 0,
-                scale: openDroneInfo ? 1.2 : 1,
-                zIndex: openDroneInfo ? 2 : 1
+                opacity: openDroneInfo ? 0 : 1,
+                x: openDroneInfo ? '-100%' : 0,
+                maxHeight: openDroneInfo ? 0 : '100%'
               }}
-              transition={{ duration: 1, ease: 'easeInOut', delay: openDroneInfo ? 0.5 : 0 }}
+              transition={{ duration: 1.5, ease: 'easeInOut' }}
             >
-              {/* Background Shape Animation */}
-              <motion.div
-                className='absolute -bottom-[100%] -left-[15%] flex h-[170%] min-w-[130%] origin-bottom items-center justify-center bg-gradient-to-b from-transparent via-[#6F6A6A]/20 to-black'
-                style={{
-                  clipPath: 'polygon(50% 100%, 0 0, 100% 0)'
-                }}
-                initial={{ opacity: 0, scaleY: 0.2 }}
-                animate={{ opacity: 1, scaleY: 1 }}
-                transition={{ duration: 1.5, delay: 0.5 }}
-              />
-
-              {/* Drone Image Animation */}
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, scale: 0.8 },
-                  visible: {
-                    opacity: 1,
-                    scale: 1.2,
-                    x: [-400, 60, 0],
-                    y: [100, 0]
-                  }
-                }}
-                initial='hidden'
-                animate='visible'
-                transition={{ duration: 1.5, delay: 0.5 }}
-                className='group relative size-full max-lg:!scale-75'
+              <motion.h2
+                className='text-3xl font-extrabold xl:text-5xl xl:leading-[60px]'
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.5 }}
               >
-                <LinePopover
-                  open={openPopovers[1] || openDroneInfo}
-                  sideOffset={120}
-                  trigger={
-                    <button
-                      ref={triggerRef}
-                      className='position-center absolute z-[2] flex size-8 items-center justify-center rounded-full border-2 border-white transition-transform duration-300 hover:scale-110'
-                      onClick={handleButtonClick}
-                      onMouseEnter={() => handlePopoverOpen(1)}
-                      onMouseLeave={() => handlePopoverClose(1)}
-                    >
-                      <div className='size-3 rotate-45 bg-blue-300' />
-                    </button>
-                  }
-                >
-                  <h3 className='text-xl font-bold'>Battery Capacity 9000 Mah</h3>
-                </LinePopover>
-
-                <LinePopover
-                  open={openPopovers[2] || openDroneInfo}
-                  sideOffset={120}
-                  trigger={
-                    <button
-                      className='absolute bottom-16 right-[15%] z-[2] flex size-8 items-center justify-center rounded-full border-2 border-white transition-transform duration-300 hover:scale-110'
-                      onClick={handleButtonClick}
-                      onMouseEnter={() => handlePopoverOpen(2)}
-                      onMouseLeave={() => handlePopoverClose(2)}
-                    >
-                      <div className='size-3 rotate-45 bg-blue-300' />
-                    </button>
-                  }
-                >
-                  <h3 className='w-fit text-wrap text-xl font-bold'>Operating Temperature : 10C- 45C</h3>
-                </LinePopover>
-
-                <CustomImage
-                  src='/hero.png'
-                  className={cn('animate-fly-animation group-hover:animate-none', openDroneInfo && 'animate-none')}
-                  alt='Hero'
-                  width={900}
-                  height='auto'
-                />
-              </motion.div>
+                GELECEK SEN
+                <br />
+                <span className='transform rounded-md bg-gradient-to-br from-orange-500/80 to-orange-400/80 px-2 text-white transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg'>
+                  HAYAL ETTİĞİN GİBİ
+                </span>
+              </motion.h2>
+              {/* Description Animation */}
+              <motion.p
+                className='font-medium'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2 }}
+              >
+                Skydagger 13” ile her türlü hava koşulunda <br /> askeri operasyonların verimliliğini arttır
+              </motion.p>
             </motion.div>
+
+            <motion.ul
+              className='relative z-[2] mt-10 space-y-1 self-start text-white'
+              initial={{ opacity: 0, left: -120 }}
+              animate={{
+                opacity: !openDroneInfo ? 0 : 1,
+                left: !openDroneInfo ? -120 : -20
+              }}
+              transition={{ duration: 1, ease: 'easeInOut' }}
+            >
+              {['Flight Time 12-14 min', 'Maximum Rage 8-14 km', 'Maximum Payload 3-6 kg'].map((item, index) => (
+                <motion.li key={index} className='flex items-center gap-6'>
+                  <Circle size={14} className='fill-white' />
+                  <span className='text-xl font-medium'>{item}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+          <div className='relative flex basis-3/6 items-center'>
+            <DroneImageSection openDroneInfo={openDroneInfo} handleButtonClick={handleButtonClick} />
           </div>
         </div>
       </div>
